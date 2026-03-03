@@ -13,12 +13,16 @@ app.use(morgan('dev')); // HTTP request logger
 app.use(express.json()); // Parse JSON payloads
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded payloads
 
+// Import Routes
+const authRoutes = require('./routes/authRoutes');
+
 // Basic Health Check Route
 app.get('/health', (req, res) => {
     res.status(200).json({ status: 'up', message: 'Apartment Maintenance API is running' });
 });
 
-// Import and use routes here later...
+// Use Routes
+app.use('/api/auth', authRoutes);
 
 
 // Global Error Handler (to be implemented fully in later stages)
