@@ -20,9 +20,9 @@ To design and implement a role-based system with proper OOP principles and clean
 - Reports & analytics
 
 ## Tech Stack
-Frontend: (To be decided)
-Backend: (To be decided)
-Database: (To be decided)
+Frontend: React + Vite
+Backend: Node.js + Express.js
+Database: mysql
 
 ## Repository Structure
 - idea.md

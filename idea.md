@@ -78,8 +78,8 @@ The system will apply OOP principles:
 ## 6. Tech Stack (Proposed)
 
 Frontend: React.js  
-Backend: (To be decided)  
-Database: MySQL / PostgreSQL  
+Backend: node.js, express.js  
+Database: MySQL 
 Authentication: JWT  
 
 ---
