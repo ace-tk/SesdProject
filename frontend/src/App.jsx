@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import LandingPage from './pages/LandingPage';
+import GetStarted from './pages/GetStarted';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<LandingPage />} />
+            <Route path="/get-started" element={<GetStarted />} />
             {/* Future routes */}
             {/* <Route path="/login" element={<Login />} /> */}
             {/* <Route path="/register" element={<Register />} /> */}

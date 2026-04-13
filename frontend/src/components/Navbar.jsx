@@ -1,7 +1,9 @@
 import React from 'react';
 import { Home, User, ShieldCheck, Wrench, Menu } from 'lucide-react';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Navbar = () => {
+  const navigate = useNavigate();
   return (
     <nav className="glass" style={{
       position: 'fixed',
@@ -15,7 +17,7 @@ const Navbar = () => {
       justifyContent: 'space-between',
       boxShadow: 'var(--shadow-sm)'
     }}>
-      <div className="flex items-center gap-2">
+      <Link to="/" className="flex items-center gap-2" style={{ cursor: 'pointer' }}>
         <div style={{
           background: 'var(--primary)',
           color: 'white',
@@ -30,7 +32,7 @@ const Navbar = () => {
         <span style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--primary)' }}>
           AptManager
         </span>
-      </div>
+      </Link>
 
       <div className="flex items-center gap-8" style={{ display: 'none', md: 'flex' }}>
         <a href="#features" className="nav-link">Features</a>
@@ -40,7 +42,12 @@ const Navbar = () => {
 
       <div className="flex items-center gap-4">
         <button className="btn btn-outline" style={{ display: 'none', sm: 'block' }}>Login</button>
-        <button className="btn btn-primary">Get Started</button>
+        <button 
+          className="btn btn-primary"
+          onClick={() => navigate('/get-started')}
+        >
+          Get Started
+        </button>
       </div>
       
       <style>{`

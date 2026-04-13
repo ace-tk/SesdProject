@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { Shield, Wrench, Users, Clock, ArrowRight, CheckCircle } from 'lucide-react';
 
 const LandingPage = () => {
+  const navigate = useNavigate();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { 
@@ -42,7 +44,11 @@ const LandingPage = () => {
             The all-in-one platform for maintenance requests, visitor management, and seamless communication in your apartment community.
           </motion.p>
           <motion.div variants={itemVariants} className="flex justify-center gap-4">
-            <button className="btn btn-primary" style={{ padding: '1rem 2rem', fontSize: '1rem' }}>
+            <button 
+              className="btn btn-primary" 
+              style={{ padding: '1rem 2rem', fontSize: '1rem' }}
+              onClick={() => navigate('/get-started')}
+            >
               Start for Free <ArrowRight size={20} />
             </button>
             <button className="btn btn-outline" style={{ padding: '1rem 2rem', fontSize: '1rem' }}>
@@ -97,7 +103,11 @@ const LandingPage = () => {
         <div className="card glass" style={{ padding: '4rem', background: 'linear-gradient(135deg, var(--primary), var(--primary-dark))', color: 'white' }}>
           <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem', color: 'white' }}>Ready to transform your community?</h2>
           <p style={{ fontSize: '1.1rem', marginBottom: '2.5rem', opacity: 0.9 }}>Join hundreds of societies simplifying their daily operations today.</p>
-          <button className="btn" style={{ backgroundColor: 'white', color: 'var(--primary)', padding: '1rem 2,5rem' }}>
+          <button 
+            className="btn" 
+            style={{ backgroundColor: 'white', color: 'var(--primary)', padding: '1rem 2.5rem' }}
+            onClick={() => navigate('/get-started')}
+          >
             Get Started Now
           </button>
         </div>
