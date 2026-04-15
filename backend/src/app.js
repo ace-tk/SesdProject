@@ -15,6 +15,8 @@ app.use(express.urlencoded({ extended: true })); // Parse URL-encoded payloads
 
 // Import Routes
 const authRoutes = require('./routes/authRoutes');
+const maintenanceRoutes = require('./routes/maintenanceRoutes');
+const visitorRoutes = require('./routes/visitorRoutes');
 
 // Basic Health Check Route
 app.get('/health', (req, res) => {
@@ -23,6 +25,8 @@ app.get('/health', (req, res) => {
 
 // Use Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/maintenance', maintenanceRoutes);
+app.use('/api/visitors', visitorRoutes);
 
 
 // Global Error Handler (to be implemented fully in later stages)
