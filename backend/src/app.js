@@ -28,11 +28,9 @@ app.use('/api/auth', authRoutes);
 app.use('/api/maintenance', maintenanceRoutes);
 app.use('/api/visitors', visitorRoutes);
 
-
-// Global Error Handler (to be implemented fully in later stages)
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).json({ success: false, message: 'Internal Server Error' });
-});
+// Error Middleware
+const { notFound, errorHandler } = require('./middlewares/errorMiddleware');
+app.use(notFound);
+app.use(errorHandler);
 
 module.exports = app;
