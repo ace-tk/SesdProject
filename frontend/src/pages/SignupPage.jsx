@@ -6,10 +6,11 @@ import { User, Mail, Lock, Shield, ArrowRight, Loader2, AlertCircle } from 'luci
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
-    name: '',
+    username: '',
     email: '',
     password: '',
-    role: 'resident'
+    role: 'Resident', // Capitalized to match DB
+    apartment_id: '1' // Default for now
   });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -28,10 +29,19 @@ const SignupPage = () => {
     setError('');
 
     try {
-      await signup(formData);
+      // Ensure role is correctly capitalized for the backend
+      const signupData = { ...formData };
+      
+      // If not a resident, we don't need apartment_id
+      if (signupData.role !== 'Resident') {
+        delete signupData.apartment_id;
+      }
+
+      await signup(signupData);
       navigate('/dashboard');
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to create account. Please try again.');
+      console.error('Signup Error:', err);
+      setError(err.response?.data?.message || 'Failed to create account. Please check your details.');
     } finally {
       setIsLoading(false);
     }
@@ -58,7 +68,7 @@ const SignupPage = () => {
         className="card" 
         style={{ width: '100%', maxWidth: '450px', padding: '2.5rem' }}
       >
-        <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <h1 style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>Create Account</h1>
           <p style={{ color: 'var(--text-muted)' }}>Join AptManager to manage your community.</p>
         </div>
@@ -85,17 +95,17 @@ const SignupPage = () => {
           </motion.div>
         )}
 
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            <label style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text)' }}>Full Name</label>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+            <label style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text)' }}>Username</label>
             <div style={{ position: 'relative' }}>
               <User style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} size={18} />
               <input 
                 type="text" 
-                name="name"
+                name="username"
                 required
-                placeholder="John Doe"
-                value={formData.name}
+                placeholder="johndoe123"
+                value={formData.username}
                 onChange={handleChange}
                 style={{ 
                   width: '100%', 
@@ -110,7 +120,7 @@ const SignupPage = () => {
             </div>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
             <label style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text)' }}>Email Address</label>
             <div style={{ position: 'relative' }}>
               <Mail style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} size={18} />
@@ -133,7 +143,7 @@ const SignupPage = () => {
             </div>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
             <label style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text)' }}>Password</label>
             <div style={{ position: 'relative' }}>
               <Lock style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} size={18} />
@@ -156,7 +166,7 @@ const SignupPage = () => {
             </div>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
             <label style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text)' }}>I am a...</label>
             <div style={{ position: 'relative' }}>
               <Shield style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} size={18} />
@@ -175,13 +185,35 @@ const SignupPage = () => {
                 }}
                 className="input-field"
               >
-                <option value="resident">Resident</option>
-                <option value="admin">Administrator</option>
-                <option value="staff">Maintenance Staff</option>
-                <option value="security">Security Personnel</option>
+                <option value="Resident">Resident</option>
+                <option value="Admin">Administrator</option>
+                <option value="Staff">Maintenance Staff</option>
+                <option value="Security">Security Personnel</option>
               </select>
             </div>
           </div>
+
+          {formData.role === 'Resident' && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+              <label style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text)' }}>Apartment ID (Demo)</label>
+              <input 
+                type="text" 
+                name="apartment_id"
+                required
+                placeholder="1"
+                value={formData.apartment_id}
+                onChange={handleChange}
+                style={{ 
+                  width: '100%', 
+                  padding: '0.75rem 1rem', 
+                  borderRadius: 'var(--radius-md)', 
+                  border: '1px solid var(--border)',
+                  outline: 'none'
+                }}
+                className="input-field"
+              />
+            </div>
+          )}
 
           <button 
             type="submit" 
