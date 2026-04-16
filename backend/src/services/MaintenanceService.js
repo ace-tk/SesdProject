@@ -64,6 +64,7 @@ class MaintenanceService {
 
     await maintenanceRepository.update(requestId, dataToUpdate);
     return await maintenanceRepository.findById(requestId);
+  }
   /**
    * Assign a staff member to a maintenance request (Admin feature)
    */
