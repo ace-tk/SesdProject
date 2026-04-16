@@ -86,6 +86,13 @@ class UserService {
 
     return await this.getUserProfile(user.user_id, user.role);
   }
+
+  /**
+   * Get all staff members for Admin tasks
+   */
+  async getAllStaff() {
+    return await userRepository.findAllStaff();
+  }
 }
 
 module.exports = new UserService();

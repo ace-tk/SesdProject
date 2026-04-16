@@ -47,6 +47,19 @@ class UserRepository extends BaseRepository {
     const results = await this.db.query(sql, [userId]);
     return results[0] || null;
   }
+
+  /**
+   * Get all staff members
+   */
+  async findAllStaff() {
+    const sql = `
+      SELECT u.username, u.email, s.staff_id, s.specialization, s.shift_timing
+      FROM USERS u
+      JOIN STAFF s ON u.user_id = s.user_id
+      WHERE u.role = 'Staff'
+    `;
+    return await this.db.query(sql);
+  }
 }
 
 module.exports = new UserRepository();

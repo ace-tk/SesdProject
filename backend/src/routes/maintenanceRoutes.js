@@ -16,6 +16,7 @@ router.patch('/:id', authorize('Staff', 'Admin'), maintenanceController.updateRe
 
 // Admin routes
 router.get('/admin', authorize('Admin'), maintenanceController.getAllRequests);
+router.get('/admin/staff', authorize('Admin'), maintenanceController.getAllStaff);
 router.post('/:id/assign', authorize('Admin'), maintenanceController.assignStaff);
 
 module.exports = router;
