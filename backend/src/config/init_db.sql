@@ -72,3 +72,12 @@ CREATE TABLE IF NOT EXISTS VISITORS (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (host_resident_id) REFERENCES RESIDENTS(resident_id) ON DELETE CASCADE
 );
+
+-- 7. Seed Data for Demo
+INSERT INTO APARTMENTS (block_number, flat_number, floor, type, status) 
+VALUES 
+('A', '101', 1, 'Standard', 'Vacant'),
+('A', '102', 1, 'Standard', 'Occupied'),
+('B', '201', 2, 'Premium', 'Vacant'),
+('B', '202', 2, 'Premium', 'Maintenance'),
+('C', '301', 3, 'Standard', 'Vacant');

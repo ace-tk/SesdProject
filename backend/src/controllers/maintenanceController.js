@@ -1,4 +1,5 @@
 const maintenanceService = require('../services/MaintenanceService');
+const userService = require('../services/UserService');
 
 /**
  * Raise a new maintenance request
@@ -85,11 +86,24 @@ const assignStaff = async (req, res) => {
   }
 };
 
+/**
+ * Get all staff members (Admin)
+ */
+const getAllStaff = async (req, res) => {
+  try {
+    const staff = await userService.getAllStaff();
+    res.status(200).json({ success: true, data: staff });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
+
 module.exports = {
   createRequest,
   getResidentRequests,
   getStaffTasks,
   updateRequest,
   getAllRequests,
-  assignStaff
+  assignStaff,
+  getAllStaff
 };

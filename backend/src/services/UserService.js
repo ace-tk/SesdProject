@@ -1,6 +1,7 @@
 const userRepository = require('../repositories/UserRepository');
 const residentRepository = require('../repositories/ResidentRepository');
 const staffRepository = require('../repositories/StaffRepository');
+const apartmentRepository = require('../repositories/ApartmentRepository');
 const passwordUtils = require('../utils/passwordUtils');
 
 class UserService {
@@ -8,6 +9,7 @@ class UserService {
    * Register a new user and their role-specific details
    */
   async registerUser(userData) {
+    console.log(`📝 Registering new user: ${userData.username} (${userData.role})`);
     const { username, email, password, role, ...details } = userData;
 
     // 1. Check if user already exists
@@ -30,6 +32,12 @@ class UserService {
 
     // 4. Create role-specific record based on inheritance pattern
     if (role === 'Resident') {
+      // Check if apartment exists
+      const apartment = await apartmentRepository.findById(details.apartment_id);
+      if (!apartment) {
+        throw new Error('Invalid Apartment ID. Please use a valid Apartment ID (e.g., 1, 2, 3).');
+      }
+
       await residentRepository.create({
         user_id: userId,
         apartment_id: details.apartment_id,
