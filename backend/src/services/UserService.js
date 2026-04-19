@@ -60,12 +60,22 @@ class UserService {
   /**
    * Fetch complete user profile including role-specific data
    */
-  async getUserProfile(userId, role) {
-    let profile = null;
+  async getUserProfile(userId, providedRole) {
+    let role = providedRole;
+    
+    // If role is not provided, fetch basic user to get it
+    if (!role) {
+      const baseUser = await userRepository.findById(userId);
+      if (!baseUser) return null;
+      role = baseUser.role;
+    }
 
-    if (role === 'Resident') {
+    let profile = null;
+    const normalizedRole = role.toLowerCase();
+
+    if (normalizedRole === 'resident') {
       profile = await userRepository.findDetailedResident(userId);
-    } else if (role === 'Staff') {
+    } else if (normalizedRole === 'staff') {
       profile = await userRepository.findDetailedStaff(userId);
     } else {
       profile = await userRepository.findById(userId);

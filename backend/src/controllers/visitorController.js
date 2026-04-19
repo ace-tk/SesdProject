@@ -6,8 +6,11 @@ const visitorService = require('../services/VisitorService');
  */
 const preApproveVisitor = async (req, res) => {
   try {
+    const { visitor_name, expected_date, ...rest } = req.body;
     const visitorData = {
-      ...req.body,
+      ...rest,
+      name: visitor_name,
+      expected_arrival: expected_date,
       host_resident_id: req.user.resident_id
     };
     const visitor = await visitorService.preApproveVisitor(visitorData);

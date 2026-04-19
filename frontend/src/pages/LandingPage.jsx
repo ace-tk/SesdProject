@@ -51,9 +51,6 @@ const LandingPage = () => {
             >
               Start for Free <ArrowRight size={20} />
             </button>
-            <button className="btn btn-outline" style={{ padding: '1rem 2rem', fontSize: '1rem' }}>
-              Watch Demo
-            </button>
           </motion.div>
         </motion.div>
       </section>

@@ -38,7 +38,7 @@ const ProtectedRoute = ({ children, roles }) => {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
-  if (roles && !roles.includes(user.role)) {
+  if (roles && !roles.map(r => r.toLowerCase()).includes(user.role?.toLowerCase())) {
     // Role not authorized, redirect to unauthorized or dashboard
     return <Navigate to="/dashboard" replace />;
   }

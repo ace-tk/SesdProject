@@ -1,5 +1,5 @@
 import React from 'react';
-import { User, Calendar, Clock, MapPin, CheckCircle2, XCircle } from 'lucide-react';
+import { User, Calendar, Clock, MapPin, CheckCircle2, XCircle, LogOut } from 'lucide-react';
 
 const VisitorCard = ({ visitor }) => {
   const getStatusInfo = (status) => {
@@ -21,73 +21,72 @@ const VisitorCard = ({ visitor }) => {
     <div className="card" style={{ 
       display: 'flex', 
       flexDirection: 'column', 
-      gap: '1rem',
+      gap: '1.25rem',
       transition: 'var(--transition)',
-      padding: '1.25rem'
     }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <div style={{ 
-            width: '40px', 
-            height: '40px', 
-            borderRadius: '50%', 
+            width: '44px', 
+            height: '44px', 
+            borderRadius: '12px', 
             backgroundColor: 'var(--background)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: 'var(--primary)'
+            color: 'var(--primary)',
+            border: '1px solid var(--border)'
           }}>
-            <User size={20} />
+            <User size={22} />
           </div>
           <div>
-            <h4 style={{ fontSize: '1rem', marginBottom: '0.125rem' }}>{visitor.visitor_name}</h4>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-              <span style={{ 
-                color: statusInfo.color, 
+            <h4 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text)' }}>{visitor.visitor_name}</h4>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <span className="badge" style={{ 
                 backgroundColor: `${statusInfo.color}15`,
-                padding: '0.15rem 0.5rem',
-                borderRadius: '1rem',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.25rem',
-                fontWeight: 600
+                color: statusInfo.color,
+                fontSize: '0.65rem'
               }}>
-                {statusInfo.icon} {visitor.status}
+                {visitor.status}
               </span>
             </div>
           </div>
         </div>
-        <div style={{ textAlign: 'right' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.875rem', marginBottom: '0.25rem' }}>
-            <Calendar size={14} className="text-text-muted" />
-            <span>{new Date(visitor.expected_date).toLocaleDateString()}</span>
-          </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-muted)', fontSize: '0.8125rem', fontWeight: 500 }}>
+          <Calendar size={14} />
+          {new Date(visitor.expected_date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
         </div>
       </div>
 
       <div style={{ 
         display: 'grid', 
         gridTemplateColumns: '1fr 1fr', 
-        gap: '0.5rem',
-        padding: '0.75rem',
-        backgroundColor: 'var(--background)',
+        gap: '0.75rem', 
+        padding: '1rem',
+        backgroundColor: '#f8fafc',
         borderRadius: 'var(--radius-md)',
-        fontSize: '0.8125rem'
+        border: '1px solid var(--border)'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-muted)' }}>
-          <Clock size={14} />
-          <span>Entry: {visitor.entry_time ? new Date(visitor.entry_time).toLocaleTimeString() : '--:--'}</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+          <Clock size={16} style={{ color: 'var(--primary)' }} />
+          <div>
+            <p style={{ fontSize: '0.6rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 700, letterSpacing: '0.025em' }}>Entry</p>
+            <p style={{ fontSize: '0.875rem', fontWeight: 600 }}>{visitor.entry_time ? new Date(visitor.entry_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '--:--'}</p>
+          </div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-muted)' }}>
-          <Clock size={14} />
-          <span>Exit: {visitor.exit_time ? new Date(visitor.exit_time).toLocaleTimeString() : '--:--'}</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+          <LogOut size={16} style={{ color: 'var(--error)' }} />
+          <div>
+            <p style={{ fontSize: '0.6rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 700, letterSpacing: '0.025em' }}>Exit</p>
+            <p style={{ fontSize: '0.875rem', fontWeight: 600 }}>{visitor.exit_time ? new Date(visitor.exit_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '--:--'}</p>
+          </div>
         </div>
       </div>
       
       {visitor.purpose && (
-        <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', display: 'flex', gap: '0.5rem' }}>
-          <strong>Purpose:</strong> {visitor.purpose}
-        </p>
+        <div style={{ display: 'flex', alignItems: 'start', gap: '0.5rem', fontSize: '0.875rem', color: 'var(--text-muted)', fontStyle: 'italic' }}>
+          <span>Purpose: {visitor.purpose}</span>
+        </div>
       )}
     </div>
   );
