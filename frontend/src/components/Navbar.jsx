@@ -20,7 +20,7 @@ const Navbar = () => {
       justifyContent: 'space-between',
       boxShadow: 'var(--shadow-sm)'
     }}>
-      <Link to="/" className="flex items-center gap-2" style={{ cursor: 'pointer' }}>
+      <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-2" style={{ cursor: 'pointer' }}>
         <div style={{
           background: 'var(--primary)',
           color: 'white',
@@ -38,8 +38,8 @@ const Navbar = () => {
       </Link>
 
       <div className="flex items-center gap-8 nav-links">
-        <Link to="/" className="nav-link">Home</Link>
-        <a href="#features" className="nav-link">Features</a>
+        <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="nav-link">Home</Link>
+        <Link to="/#features" className="nav-link">Features</Link>
         {user && <Link to="/dashboard" className="nav-link">Dashboard</Link>}
       </div>
 

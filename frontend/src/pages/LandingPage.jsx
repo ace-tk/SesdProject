@@ -1,10 +1,23 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Shield, Wrench, Users, Clock, ArrowRight, CheckCircle } from 'lucide-react';
 
 const LandingPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  
+  React.useEffect(() => {
+    if (location.hash) {
+      setTimeout(() => {
+        const element = document.getElementById(location.hash.substring(1));
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [location]);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { 

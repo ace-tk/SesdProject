@@ -14,8 +14,8 @@ class VisitorService {
     const visitorId = await visitorRepository.create({
       host_resident_id,
       name,
-      contact_number,
-      purpose,
+      contact_number: contact_number || null,
+      purpose: purpose || null,
       expected_arrival,
       status: 'Expected'
     });

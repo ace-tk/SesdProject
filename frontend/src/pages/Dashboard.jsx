@@ -728,7 +728,10 @@ const SecurityDashboard = () => {
     setIsLoading(true);
     try {
       const res = await api.get('/visitors/security/dashboard');
-      setData(res.data.data);
+      setData({
+        active: res.data.data.activeVisitors || [],
+        expected: res.data.data.expectedToday || []
+      });
     } catch (err) {
       console.error('Error fetching security dashboard:', err);
     } finally {
