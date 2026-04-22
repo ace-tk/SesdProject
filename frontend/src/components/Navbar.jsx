@@ -40,7 +40,7 @@ const Navbar = () => {
       <div className="flex items-center gap-8 nav-links">
         <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="nav-link">Home</Link>
         <Link to="/#features" className="nav-link">Features</Link>
-        {user && <Link to="/dashboard" className="nav-link">Dashboard</Link>}
+        <Link to="/dashboard" className="nav-link">Dashboard</Link>
       </div>
 
       <div className="flex items-center gap-4">

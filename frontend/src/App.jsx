@@ -6,7 +6,7 @@ import GetStarted from './pages/GetStarted';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import Dashboard from './pages/Dashboard';
-import ProtectedRoute from './components/ProtectedRoute';
+
 import { AuthProvider } from './context/AuthContext';
 
 function App() {
