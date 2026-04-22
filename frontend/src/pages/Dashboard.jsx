@@ -167,6 +167,23 @@ const Dashboard = () => {
 
       {/* Main Content Area */}
       <main style={{ flex: 1, padding: '2.5rem 4rem', overflowY: 'auto', height: '100vh' }}>
+        {/* Demo Mode Banner */}
+        <div style={{
+          backgroundColor: 'rgba(245, 158, 11, 0.1)',
+          border: '1px solid rgba(245, 158, 11, 0.2)',
+          padding: '0.75rem 1.25rem',
+          borderRadius: 'var(--radius-md)',
+          marginBottom: '2rem',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.75rem',
+          color: '#d97706',
+          fontSize: '0.875rem',
+          fontWeight: 600
+        }}>
+          <Shield size={18} />
+          <span>System running in <strong>Demo Mode</strong>. No backend required for evaluation.</span>
+        </div>
         <motion.div
           initial="hidden"
           animate="visible"

@@ -1,34 +1,30 @@
 # Apartment Maintenance & Visitor Management System
 
 ## 🔗 Live Demo
-https://sesd-project-sr6f.vercel.app/
-## Project Description
-A full-stack web application to manage apartment residents, maintenance requests, visitors, and administrative operations.
+**[Launch Application](https://sesd-project-sr6f.vercel.app/)**
 
-## Objective
-To design and implement a role-based system with proper OOP principles and clean backend architecture.
+> [!NOTE]
+> **Evaluation Mode**: This application currently runs in **Demo Mode** (Full Frontend Mock). All backend features (Authentication, Database, etc.) are simulated using a mock API layer and `localStorage`. This ensures a stable, fully functional experience for evaluators without requiring a deployed backend server.
 
-## User Roles
-- Admin
-- Resident
-- Maintenance Staff
-- Security Guard
+---
 
-## Key Features
-- User authentication & authorization
-- Maintenance request workflow
-- Staff assignment system
-- Visitor approval system
-- Reports & analytics
+## 🚀 Key Features for Evaluation
 
-## Tech Stack
-Frontend: React + Vite
-Backend: Node.js + Express.js
-Database: mysql
+1. **Role-Based Dashboards**: Access distinct views for Admin, Resident, Staff, and Security Guard.
+2. **Maintenance Workflow**: Create, assign, and update maintenance requests (Data persists in your current session).
+3. **Visitor Management**: Pre-approve visitors and log entry/exit status.
+4. **Statistics & Analytics**: View real-time (mocked) stats on community operations.
 
-## Repository Structure
-- idea.md
-- useCaseDiagram.md
-- sequenceDiagram.md
-- classDiagram.md
-- ErDiagram.md
+## 🛠 Tech Stack
+- **Frontend**: React + Vite + Framer Motion
+- **Backend Architecture**: Node.js + Express (Modular Layered Architecture)
+- **Database**: MySQL (Schema provided in `idea.md` and diagrams)
+- **State Management**: React Context API
+
+## 📋 Documentation
+- [idea.md](file:///Users/tisha/SesdProject/idea.md)
+- [useCaseDiagram.md](file:///Users/tisha/SesdProject/useCaseDiagram.md)
+- [sequenceDiagram.md](file:///Users/tisha/SesdProject/sequenceDiagram.md)
+- [classDiagram.md](file:///Users/tisha/SesdProject/classDiagram.md)
+- [ErDiagram.md](file:///Users/tisha/SesdProject/ErDiagram.md)
+
